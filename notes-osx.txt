@@ -1,0 +1,20 @@
+To compile nodee, you need the libzookeper library.  One way of
+getting that is to install it using the macports ports collection:
+
+
+   tabla:~ rmz2$ sudo port install libzookeeper
+   Password:
+   Warning: port definitions are more than two weeks old, consider using
+   selfupdate
+   --->  Fetching archive for libzookeeper
+   --->  Attempting to fetch libzookeeper-3.3.4_0.darwin_10.x86_64.tbz2
+   from http://packages.macports.org/libzookeeper
+   --->  Attempting to fetch
+   libzookeeper-3.3.4_0.darwin_10.x86_64.tbz2.rmd160 from
+   http://packages.macports.org/libzookeeper
+   --->  Installing libzookeeper @3.3.4_0
+   --->  Activating libzookeeper @3.3.4_0
+   --->  Cleaning libzookeeper
+   
+This will drop the files in /opt/local/include/zookeeper, so  this
+will have to be included in the search path(s) for the compiler.
