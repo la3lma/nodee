@@ -25,7 +25,7 @@ endif
 
 
 ifeq ($(shell ./platform.sh), Darwin)
-BOOSTLIBS=-lboost_thread-mt -lboost_filesystem-mt -lboost_program_options-mt \
+BOOSTLIBS=-lboost_thread-mt -lboost_filesystem-mt -lboost_program_options-mt -lboost_system-mt \
 		-lzookeeper_mt
 ZKINCLUDE=-I/opt/local/include/zookeeper
 endif
