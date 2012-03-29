@@ -23,6 +23,13 @@ BOOSTLIBS=-lboost_thread -lboost_filesystem -lboost_program_options \
 ZKINCLUDE=-I/usr/include/c-client-src
 endif
 
+
+ifeq ($(shell ./platform.sh), Darwin)
+BOOSTLIBS=-lboost_thread-mt -lboost_filesystem-mt -lboost_program_options-mt \
+		-lzookeeper_mt
+ZKINCLUDE=-I/opt/local/include/zookeeper
+endif
+
 ifeq (${VERSION}, )
 VERSION=$(shell whoami)-SNAPSHOT-$(shell git show --abbrev-commit --pretty=format:%H HEAD | head -1)
 endif
@@ -35,7 +42,7 @@ endif
 	${COMPILER} ${ZKINCLUDE} -DVERSION=\"${VERSION}\" -DDATE=\"${DATE}\" -g -c -o $@ -O0 $<
 
 nodee: ${OBJECTS} nodee.o Makefile
-	${COMPILER} -g -o nodee -pthread ${OBJECTS} nodee.o ${BOOSTLIBS} 
+	${COMPILER} -g -o nodee -L/opt/local/lib -L/usr/local/lib  -pthread ${OBJECTS} nodee.o ${BOOSTLIBS} 
 
 clean:
 	-rm nodee nodeetest dropprivileges *.o
